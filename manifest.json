@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Slate Focus – Reading Ruler & Focus Mode",
   "version": "0.1",
-  "description": "A reading ruler and focus mode for any web page — dims everything except the line you're reading, with adjustable spacing and spotlight size. No account, nothing leaves your browser.",
+  "description": "A reading ruler and focus mode for any web page — dims everything except the line you're reading. No account, fully local.",
   "action": {
     "default_popup": "popup.html",
     "default_title": "Slate Focus",
