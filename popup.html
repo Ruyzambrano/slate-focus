@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    width: 260px;
+    font-family: -apple-system, sans-serif;
+    padding: 14px;
+    margin: 0;
+  }
+  h1 {
+    font-size: 13px;
+    margin: 0 0 10px;
+    color: #2b2a28;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #2d6a4f;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  button:hover { background: #245a41; }
+  button:disabled {
+    background: #c9c4b8;
+    cursor: not-allowed;
+  }
+  button.secondary {
+    background: #6b6660;
+    font-size: 12px;
+    padding: 8px;
+  }
+  button.secondary:hover { background: #575349; }
+  .premium-box {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #eef4f0;
+    border: 1px solid #d3e2d9;
+  }
+  .premium-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #2b2a28;
+    margin: 0 0 4px;
+  }
+  .premium-sub {
+    font-size: 11px;
+    color: #6b6660;
+    margin: 0 0 10px;
+    line-height: 1.4;
+  }
+  .premium-box .secondary-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .premium-box .secondary-row button {
+    width: auto;
+    flex: 1;
+    margin-top: 0;
+  }
+  input:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  p.note {
+    font-size: 11px;
+    color: #6b6660;
+    margin: 10px 0 0;
+  }
+  p.restricted-note {
+    font-size: 11px;
+    color: #8a3b2e;
+    background: #f7e3df;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin: 10px 0 0;
+    display: none;
+  }
+  .controls {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e8e3da;
+  }
+  .controls label {
+    display: block;
+    font-size: 12px;
+    color: #2b2a28;
+    margin-bottom: 10px;
+  }
+  .controls input[type="range"] {
+    width: 100%;
+    margin-top: 4px;
+  }
+  .controls span {
+    color: #6b6660;
+  }
+  .controls input[type="color"] {
+    width: 100%;
+    height: 30px;
+    margin-top: 4px;
+    border: 1px solid #e8e3da;
+    border-radius: 6px;
+    padding: 2px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <h1>Slate Focus</h1>
+  <button id="toggleBtn">Toggle Focus Mode</button>
+  <p class="note">Click on any article, then move your mouse down the page — everything dims except a band around your cursor. Click the button again to undo.</p>
+  <p class="restricted-note" id="restrictedNote">Focus Mode can't run on this page — browser pages like this one are off-limits to every extension. Try it on a regular website instead.</p>
+
+  <div class="premium-box" id="premiumLocked">
+    <p class="premium-title">Unlock full customization</p>
+    <p class="premium-sub">Color, font size, paragraph width, and edge softness — one-time purchase, no subscription.</p>
+    <button id="buyBtn" class="secondary">Buy Slate Focus Premium</button>
+    <div class="secondary-row">
+      <button id="loginBtn" class="secondary">Already paid? Log in</button>
+    </div>
+  </div>
+
+  <div class="premium-box" id="premiumActive" style="display:none;">
+    <p class="premium-title">✓ Premium active</p>
+  </div>
+
+  <div class="controls">
+    <label>Spotlight height: <span id="bandHeightVal">110</span>px
+      <input type="range" id="bandHeight" min="60" max="220" step="5" value="110">
+    </label>
+    <label>Dim strength: <span id="dimStrengthVal">0.60</span>
+      <input type="range" id="dimStrength" min="0.2" max="0.85" step="0.05" value="0.6">
+    </label>
+    <label>Overlay color
+      <input type="color" id="dimColor" value="#14120f">
+    </label>
+    <label>Font size: <span id="fontSizeVal">1.08</span>em
+      <input type="range" id="fontSize" min="0.9" max="1.6" step="0.02" value="1.08">
+    </label>
+    <label>Paragraph width: <span id="maxWidthVal">700</span>px
+      <input type="range" id="maxWidth" min="400" max="1000" step="20" value="700">
+    </label>
+    <label>Edge softness: <span id="edgeSoftnessVal">30</span>px
+      <input type="range" id="edgeSoftness" min="0" max="80" step="5" value="30">
+    </label>
+  </div>
+
+  <p class="note">Want a keyboard shortcut for Focus Mode? Set one at <strong>chrome://extensions/shortcuts</strong> (search for Slate Focus).</p>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
