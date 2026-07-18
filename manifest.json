@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Slate Focus – Reading Ruler & Focus Mode",
-  "version": "0.1",
+  "version": "0.2",
   "description": "A reading ruler and focus mode for any web page — dims everything except the line you're reading. No account, fully local.",
   "action": {
     "default_popup": "popup.html",
