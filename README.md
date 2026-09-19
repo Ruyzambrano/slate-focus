@@ -36,17 +36,11 @@ Chrome flatly refuses script injection into its own privileged pages — `chrome
 
 The fix is `isRestrictedUrl()` in `shared.js`, a small check against known-restricted URL prefixes. It's used in three places: the popup checks the active tab on open and disables the toggle button and every slider (with a visible explanation) if the current page is restricted; the slider change-handler checks again before attempting a live update; and `background.js` checks before the keyboard shortcut tries to inject anything. Same rule, enforced everywhere something could trigger `executeScript` — this is the same reasoning as putting the shared functions in one file: one check, reused, rather than three chances to forget it in one place.
 
-## Free vs. Premium
+## Free
 
-Toggling Focus Mode is free, always, however you trigger it (button or shortcut) — the core capability isn't crippled. What's gated is the *look*: the six customization controls (spotlight height, dim strength, color, font size, paragraph width, edge softness) only take effect once a license is activated. Free-tier toggling always uses `DEFAULTS` from `shared.js`, regardless of what's sitting in storage — that's deliberate, not just the inputs being disabled cosmetically. `currentSettings()` in `popup.js` and the equivalent check in `background.js` both return `DEFAULTS` unless `isPremium()` says otherwise, so even manually-edited storage can't fake unlocked settings.
+Everything is free — toggling Focus Mode and all six customization controls (spotlight height, dim strength, color, font size, paragraph width, edge softness), however you trigger it (button or shortcut). There's no license, no account, and nothing phones home. Settings live only in `chrome.storage.local`.
 
-**Licensing runs through ExtensionPay (extensionpay.com), no server of ours.** This replaced an earlier Gumroad-based design that required customers to copy-paste a license key — a real point of friction for a £5 impulse buy. ExtensionPay is a service purpose-built for exactly this: browser extension payments via Stripe, with no key to type. `shared.js` vendors the client library at `vendor/extpay.js` (committed directly since Chrome Web Store policy forbids loading remotely-hosted code) and exports `extpay()`, which returns a fresh `ExtPay(EXTPAY_EXTENSION_ID)` instance. `buyBtn` calls `extpay().openPaymentPage()`, which opens Stripe Checkout in a new tab; `isPremium()` calls `extpay().getUser()`, which asks ExtensionPay's servers for real-time paid status. No manual "activate" step — the popup just re-checks on every open, which happens naturally after the checkout tab is closed.
-
-**One placeholder needs replacing before this can actually sell anything:** `EXTPAY_EXTENSION_ID` at the top of `shared.js`, currently `REPLACE_WITH_SLATE_FOCUS_EXTPAY_ID`. It becomes real once you register the extension at [extensionpay.com](https://extensionpay.com) and connect a Stripe account — that dashboard is also where you set the price and create the one-time-payment plan.
-
-**Cross-device/browser, handled properly.** This was the direct problem with the Gumroad approach: `chrome.storage.sync` only carries a flag to devices signed into the same Chrome account, not to a different browser vendor or a signed-out profile. ExtensionPay sidesteps this entirely — paid status is tied to an email login on their servers (`extpay().openLoginPage()`, wired to "Already paid? Log in" in the popup), the same pattern as logging into any web app, and it works identically across Chrome, Edge, Brave, or Firefox.
-
-**No "Deactivate" button anymore.** That was a Gumroad-era testing convenience for toggling a local flag on and off; ExtensionPay's paid status isn't a local flag to clear; it's a live read from their servers. For your own testing, use a Stripe test-mode account and [Stripe's test cards](https://docs.stripe.com/testing) rather than a fake toggle.
+This used to be gated behind an ExtensionPay paywall (a one-time £5 unlock for the customization controls). That's been removed: at the install numbers this extension actually has, a paywall wasn't earning anything and was just friction for the few people who found it. The popup now has an optional "buy me a coffee" link instead, for anyone who wants to say thanks — there's no expectation attached to it.
 
 ## Going deeper
 
@@ -54,7 +48,6 @@ Toggling Focus Mode is free, always, however you trigger it (button or shortcut)
 - [chrome.storage API reference](https://developer.chrome.com/docs/extensions/reference/api/storage)
 - [chrome.commands API reference](https://developer.chrome.com/docs/extensions/reference/api/commands)
 - [Background service workers — Chrome for Developers](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers)
-- [ExtensionPay documentation](https://extensionpay.com/) / [ExtPay library source](https://github.com/Glench/ExtPay)
 
 ## Published
 

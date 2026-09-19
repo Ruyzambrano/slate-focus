@@ -29,41 +29,15 @@
     background: #c9c4b8;
     cursor: not-allowed;
   }
-  button.secondary {
-    background: #6b6660;
-    font-size: 12px;
-    padding: 8px;
-  }
-  button.secondary:hover { background: #575349; }
-  .premium-box {
-    margin-top: 14px;
-    padding: 12px;
-    border-radius: 8px;
-    background: #eef4f0;
-    border: 1px solid #d3e2d9;
-  }
-  .premium-title {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #2b2a28;
-    margin: 0 0 4px;
-  }
-  .premium-sub {
+  .coffee-link {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
     font-size: 11px;
-    color: #6b6660;
-    margin: 0 0 10px;
-    line-height: 1.4;
+    color: #2d6a4f;
+    text-decoration: none;
   }
-  .premium-box .secondary-row {
-    display: flex;
-    gap: 6px;
-    margin-top: 8px;
-  }
-  .premium-box .secondary-row button {
-    width: auto;
-    flex: 1;
-    margin-top: 0;
-  }
+  .coffee-link:hover { text-decoration: underline; }
   input:disabled {
     opacity: 0.45;
     cursor: not-allowed;
@@ -117,19 +91,6 @@
   <p class="note">Click on any article, then move your mouse down the page — everything dims except a band around your cursor. Click the button again to undo.</p>
   <p class="restricted-note" id="restrictedNote">Focus Mode can't run on this page — browser pages like this one are off-limits to every extension. Try it on a regular website instead.</p>
 
-  <div class="premium-box" id="premiumLocked">
-    <p class="premium-title">Unlock full customization</p>
-    <p class="premium-sub">Color, font size, paragraph width, and edge softness — one-time purchase, no subscription.</p>
-    <button id="buyBtn" class="secondary">Buy Slate Focus Premium</button>
-    <div class="secondary-row">
-      <button id="loginBtn" class="secondary">Already paid? Log in</button>
-    </div>
-  </div>
-
-  <div class="premium-box" id="premiumActive" style="display:none;">
-    <p class="premium-title">✓ Premium active</p>
-  </div>
-
   <div class="controls">
     <label>Spotlight height: <span id="bandHeightVal">110</span>px
       <input type="range" id="bandHeight" min="60" max="220" step="5" value="110">
@@ -152,6 +113,8 @@
   </div>
 
   <p class="note">Want a keyboard shortcut for Focus Mode? Set one at <strong>chrome://extensions/shortcuts</strong> (search for Slate Focus).</p>
+
+  <a class="coffee-link" href="https://ko-fi.com/ruyzambrano" target="_blank" rel="noopener">☕ Find this useful? Buy me a coffee</a>
 
   <script type="module" src="popup.js"></script>
 </body>

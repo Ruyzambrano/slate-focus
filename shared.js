@@ -1,5 +1,3 @@
-            
-
 export const DEFAULTS = {
   bandHeight: 110,
   dimStrength: 0.6,
@@ -8,7 +6,7 @@ export const DEFAULTS = {
   maxWidth: 700,
   edgeSoftness: 30,
 };
-               
+
 export function isRestrictedUrl(url) {
   if (!url) return true;
   return (
@@ -28,25 +26,6 @@ export function hexToRgba(hex, alpha) {
   const b = parseInt(clean.substring(4, 6), 16);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
-               
-import ExtPay from './vendor/extpay.js';
-
-export const EXTPAY_EXTENSION_ID = 'slate-focus';
-             export function extpay() {
-  return ExtPay(EXTPAY_EXTENSION_ID);
-}
-
-export async function isPremium() {
-  try {
-    const user = await extpay().getUser();
-    return !!user.paid;
-  } catch (err) {
-      
-      
-    return false;
-  }
-}
-                    
 
 export function toggleFocusMode(bandHeight, overlayColor, fontSize, maxWidth, edgeSoftness) {
   const styleId = 'readrail-focus-style';
@@ -77,8 +56,6 @@ export function toggleFocusMode(bandHeight, overlayColor, fontSize, maxWidth, ed
   }
 
   function bandBackground(direction, color, softness) {
-      
-      
     return `linear-gradient(${direction}, ${color} 0%, ${color} calc(100% - ${softness}px), transparent 100%)`;
   }
 

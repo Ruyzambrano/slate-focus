@@ -12,13 +12,13 @@ Your customization settings (spotlight height, dim strength, color, font size, p
 
 ## Payment data
 
-If you purchase Slate Focus Premium, payment is handled entirely by [ExtensionPay](https://extensionpay.com) and [Stripe](https://stripe.com), not by us. We never see, receive, or store your card number or other payment details. ExtensionPay stores your email address (used for login/purchase-restore on other devices) and payment status (paid or not) on their servers. See [ExtensionPay's privacy policy](https://extensionpay.com/privacy) and [Stripe's privacy policy](https://stripe.com/privacy) for details on how they handle that data.
+Slate Focus is free. It does not process payments, and no payment or account data of any kind is collected or transmitted anywhere. If you'd like to support development, an optional [Ko-fi](https://ko-fi.com/ruyzambrano) link is available in the extension popup — donations there are handled entirely by Ko-fi, not by us.
 
 ## Permissions the extension requests, and why
 
 - **`activeTab`** — lets the extension act on the current tab only when you click the toolbar icon, use the keyboard shortcut, or open the popup. It cannot read or act on tabs you haven't directly interacted with.
 - **`scripting`** — needed to inject the focus-mode overlay and readability styles into the current page when you turn it on.
-- **`storage`** — needed to remember your customization settings and premium status locally.
+- **`storage`** — needed to remember your customization settings locally.
 
 Slate Focus never requests permission to read your browsing history, your other open tabs, or any page you haven't explicitly activated it on.
 
